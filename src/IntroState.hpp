@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  TitleState.hpp
+ *       Filename:  IntroState.hpp
  *
  *
  *       Created:  06/23/2012 04:33:49 PM
@@ -12,17 +12,17 @@
  * =====================================================================================
  */
 
-#ifndef __TITLESTATE_H__
-#define __TITLESTATE_H__
+#ifndef __INTROSTATE_H__
+#define __INTROSTATE_H__
 
 
 #include "NState.hpp"
 #include "NGame.hpp"
 
-class TitleState: public NState
+class IntroState: public NState
 {
     public:
-        TitleState(NGame* game);
+        IntroState(NGame* game);
         void Load();
         void Draw();
         void Update();

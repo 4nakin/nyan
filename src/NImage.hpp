@@ -16,11 +16,18 @@
 #ifndef __NIMAGE_H__
 #define __NIMAGE_H__
 
+#include <string>
+#include <SFML/Graphics.hpp>
+
 
 class NImage
 {
-    
+    public:
+       void Load(std::string name);
 
+       sf::Sprite surf;
+       sf::Image img;
+        
 };
 
 

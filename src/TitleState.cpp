@@ -13,7 +13,10 @@
  */
 
 #include "TitleState.hpp"
+#include "IntroState.hpp"
+#include "NImage.hpp"
 
+NImage img;
 
 TitleState::TitleState(NGame* game)
 {
@@ -23,13 +26,13 @@ TitleState::TitleState(NGame* game)
 
 void TitleState::Load()
 {
-
+   img.Load("resources/gfx/intro.jpg"); 
 }
 
 
 void TitleState::Draw()
 {
-
+    _game->App->Draw(img.surf);
 }
 
 
@@ -42,7 +45,10 @@ void TitleState::Update()
 
 void TitleState::HandleControls()
 {
+    const sf::Input& Input = _game->App->GetInput();
 
+    if (Input.IsKeyDown(sf::Key::Space))
+        _game->SetState(new IntroState(_game));
 }
 
 

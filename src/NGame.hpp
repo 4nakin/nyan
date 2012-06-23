@@ -25,7 +25,7 @@
 class NGame
 {
     public:
-        bool Init(sf::RenderWindow* App);
+        bool Init(sf::RenderWindow* win);
         void Draw();
         void Update();
 
@@ -34,6 +34,8 @@ class NGame
 
         // called by NState objects
         void SetState(NState* state);
+
+        sf::RenderWindow* App;
 
 
     private:

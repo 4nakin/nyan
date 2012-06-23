@@ -13,14 +13,15 @@
  */
 
 #include "NGame.hpp"
-#include "States.hpp"
+#include "TitleState.hpp"
 #include <SFML/Graphics.hpp>
 
 
 
-bool NGame::Init(sf::RenderWindow* App)
+bool NGame::Init(sf::RenderWindow* win)
 {
     _curState = NULL;
+    App = win;
 
     App->Create(sf::VideoMode(1024, 768, 32), "Game", sf::Style::Close);
 
@@ -65,4 +66,5 @@ void NGame::Unload()
 {
     if (_curState)
         delete _curState;
+
 }

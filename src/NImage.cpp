@@ -1,10 +1,10 @@
 /*
  * =====================================================================================
  *
- *       Filename:  States.hpp
+ *       Filename:  NImage.cpp
  *
  *
- *       Created:  06/23/2012 05:04:27 PM
+ *       Created:  06/23/2012 07:07:46 PM
  *       Compiler:  gcc
  *
  *       Author:  Andrew De Stefano, andrew.destef@gmail.com
@@ -12,11 +12,16 @@
  * =====================================================================================
  */
 
-#ifndef __STATES_H__
-#define __STATES_H__
+#include "NImage.hpp"
+#include "NGame.hpp"
 
 
-#include "TitleState.hpp"
+void NImage::Load(std::string name)
+{
 
+    img.LoadFromFile(name);
 
-#endif
+    surf.SetImage(img);
+
+}
+
