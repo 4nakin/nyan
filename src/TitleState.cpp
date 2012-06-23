@@ -15,6 +15,12 @@
 #include "TitleState.hpp"
 
 
+TitleState::TitleState(NGame* game)
+{
+    _game = game;
+}
+
+
 void TitleState::Load()
 {
 
@@ -22,6 +28,25 @@ void TitleState::Load()
 
 
 void TitleState::Draw()
+{
+
+}
+
+
+void TitleState::Update()
+{
+
+    HandleControls();
+}
+
+
+void TitleState::HandleControls()
+{
+
+}
+
+
+void TitleState::Unload()
 {
 
 }

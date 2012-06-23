@@ -17,18 +17,23 @@
 
 
 #include "NState.hpp"
+#include "NGame.hpp"
 
 
 class TitleState: public NState
 {
     public:
-        void Draw();
+        TitleState(NGame* game);
         void Load();
+        void Draw();
         void Update();
         void Unload();
 
     protected:
         void HandleControls();
+
+    private:
+        NGame* _game;
 
 };
 

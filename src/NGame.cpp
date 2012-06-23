@@ -13,55 +13,56 @@
  */
 
 #include "NGame.hpp"
+#include "States.hpp"
 #include <SFML/Graphics.hpp>
 
-static sf::RenderWindow App;
 
 
-bool NGame::Init()
+bool NGame::Init(sf::RenderWindow* App)
 {
+    _curState = NULL;
 
-    App.Create(sf::VideoMode(1024, 768, 32), "Game", sf::Style::Close);
+    App->Create(sf::VideoMode(1024, 768, 32), "Game", sf::Style::Close);
 
-    App.UseVerticalSync(true);
-    App.EnableKeyRepeat(true);
-    App.SetFramerateLimit(60);
+    App->UseVerticalSync(true);
+    App->EnableKeyRepeat(true);
+    App->SetFramerateLimit(60);
+
+
+    SetState(new TitleState(this));
 
     return true;
 }
 
 
-void NGame::Loop()
-{
-    while (App.IsOpened())
-    {
-        sf::Event gameEvent;
-        while (App.GetEvent(gameEvent))
-        {
-            if (gameEvent.Type == sf::Event::Closed)
-                App.Close();
-        }
-
-        Update();
-
-        App.Clear();
-
-        Draw();
-
-        App.Display();
-    }
-}
-
-
-
 void NGame::Update()
 {
 
+    _curState->Update();
 }
 
 
 void NGame::Draw()
 {
 
+    _curState->Draw();
+}
 
+
+
+void NGame::SetState(NState* state)
+{
+
+    if (_curState)
+        _curState->Unload();
+
+    _curState = state;
+    _curState->Load();
+}
+
+
+void NGame::Unload()
+{
+    if (_curState)
+        delete _curState;
 }

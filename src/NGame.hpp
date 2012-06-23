@@ -18,31 +18,30 @@
 
 #include <map>
 #include <string>
+#include <SFML/Graphics.hpp>
 #include "NState.hpp"
 
 
 class NGame
 {
     public:
-        bool Init();
+        bool Init(sf::RenderWindow* App);
         void Draw();
         void Update();
 
         void Quit();
-        void LoadState(std::string, NState);
+        void Unload();
 
-        void Loop();
+        // called by NState objects
+        void SetState(NState* state);
+
 
     private:
-        std::map <std::string, NState> _states;
         int _width;
         int _height;
         int _bpp;
 
-        // called by NState objects
-        void SetState(std::string);
-        friend class NState;
-
+        NState* _curState;
 };
 
 

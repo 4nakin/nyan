@@ -14,15 +14,36 @@
  */
 #include "NGame.hpp"
 #include <cstdlib>
+#include <SFML/Graphics.hpp>
+
 
 int main(int argc, char **argv)
 {
+    sf::RenderWindow App;
     NGame game;
 
-    if (!game.Init())
+    if (!game.Init(&App))
         return EXIT_FAILURE;
 
-    game.Loop();
+    while (App.IsOpened())
+    {
+    
+        sf::Event event;
+        while(App.GetEvent(event))
+        {
+            if (event.Type == sf::Event::Closed)
+                App.Close();
+        }
+
+
+        game.Update();
+        App.Clear();
+        game.Draw();
+
+        App.Display();
+    }
+
+    game.Unload();
 
     return EXIT_SUCCESS;
 }

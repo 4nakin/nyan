@@ -14,19 +14,19 @@
  */
 
 #ifndef __NSTATE_H__
-#define __NTSTATE_H__
+#define __NSTATE_H__
 
 
 class NState
 {
     public:
-        virtual void Load();
-        virtual void Draw();
-        virtual void Update();
-        virtual void Unload();
+        virtual void Load() = 0;
+        virtual void Draw() = 0;
+        virtual void Update() = 0;
+        virtual void Unload() = 0;
 
     protected:
-        virtual void HandleControls();
+        virtual void HandleControls() = 0;
 };
 
 
