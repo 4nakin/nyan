@@ -23,7 +23,7 @@ bool NGame::Init(sf::RenderWindow* win)
     _curState = NULL;
     App = win;
 
-    App->Create(sf::VideoMode(1024, 768, 32), "Game", sf::Style::Close);
+    App->Create(sf::VideoMode(1024, 768, 32), "Game", sf::Style::Fullscreen);
 
     App->UseVerticalSync(true);
     App->EnableKeyRepeat(true);

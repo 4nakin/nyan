@@ -13,10 +13,11 @@
  */
 
 #include "IntroState.hpp"
+#include "MainState.hpp"
 #include "NSprite.hpp"
+#include <SFML/Audio.hpp>
 
-NSprite nyan;
-
+NSprite introImage;
 
 IntroState::IntroState(NGame* game)
 {
@@ -26,22 +27,23 @@ IntroState::IntroState(NGame* game)
 
 void IntroState::Load()
 {
-    nyan.Load("resources/gfx/nyan2.png", 100, 100, 1.f);
-    nyan.LoadAnimation(0, 6);
-    nyan.SetAnimation(0);
+    introImage.Load("resources/gfx/intro_creds.png", 1024, 768, 1.f);
+    introImage.surf.SetY(1024);
 }
 
 
 void IntroState::Draw()
 {
-    nyan.Play();
-    _game->App->Draw(nyan.surf);
+
+    _game->App->Draw(introImage.surf);
 }
 
 
 void IntroState::Update()
 {
 
+    if (introImage.surf.GetPosition().y > 0)
+        introImage.surf.Move(0.f, -1.f);
     HandleControls();
 }
 
@@ -50,14 +52,8 @@ void IntroState::HandleControls()
 {
     const sf::Input& Input = _game->App->GetInput();
     
-    if (Input.IsKeyDown(sf::Key::Right))
-        nyan.surf.Move(3.f, 0.f);
-    if (Input.IsKeyDown(sf::Key::Left))
-        nyan.surf.Move(-3.f, 0.f);
-    if (Input.IsKeyDown(sf::Key::Down))
-        nyan.surf.Move(0.f, 3.f);
-    if (Input.IsKeyDown(sf::Key::Up))
-        nyan.surf.Move(0.f, -3.f);
+    if (Input.IsKeyDown(sf::Key::Return))
+        _game->SetState(new MainState(_game));
 
 }
 

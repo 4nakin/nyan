@@ -33,6 +33,10 @@ int main(int argc, char **argv)
         {
             if (event.Type == sf::Event::Closed)
                 App.Close();
+            else if (event.Type == sf::Event::KeyPressed && event.Key.Code == sf::Key::Escape)
+            {
+                App.Close();
+            }
         }
 
 
