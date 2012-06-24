@@ -22,7 +22,7 @@
 class IntroState: public NState
 {
     public:
-        IntroState(NGame* game);
+        IntroState(game_ptr game);
         void Load();
         void Draw();
         void Update();
@@ -33,7 +33,7 @@ class IntroState: public NState
         void HandleControls();
 
     private:
-        NGame* _game;
+        game_ptr _game;
 
 };
 

@@ -23,7 +23,7 @@
 class MainState: public NState
 {
     public:
-        MainState(NGame* game);
+        MainState(game_ptr game);
         void Load();
         void Draw();
         void Update();
@@ -34,7 +34,7 @@ class MainState: public NState
         void HandleControls();
 
     private:
-        NGame* _game;
+        game_ptr _game;
 
 };
 

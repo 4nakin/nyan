@@ -22,7 +22,7 @@
 class TitleState: public NState
 {
     public:
-        TitleState(NGame* game);
+        TitleState(game_ptr game);
         void Load();
         void Draw();
         void Update();
@@ -33,7 +33,7 @@ class TitleState: public NState
         void HandleControls();
 
     private:
-        NGame* _game;
+        game_ptr _game;
 
 };
 

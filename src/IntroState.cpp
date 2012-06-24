@@ -19,7 +19,7 @@
 
 NSprite introImage;
 
-IntroState::IntroState(NGame* game)
+IntroState::IntroState(game_ptr game)
 {
     _game = game;
 }
@@ -53,7 +53,7 @@ void IntroState::HandleControls()
     const sf::Input& Input = _game->App->GetInput();
     
     if (Input.IsKeyDown(sf::Key::Return))
-        _game->SetState(new MainState(_game));
+        _game->SetState(state_ptr(new MainState(_game)));
 
 }
 

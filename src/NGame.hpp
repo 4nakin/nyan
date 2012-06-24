@@ -18,14 +18,20 @@
 
 #include <map>
 #include <string>
+#include <tr1/memory>
+#include <memory>
 #include <SFML/Graphics.hpp>
 #include "NState.hpp"
+
+
+typedef std::tr1::shared_ptr<NState> state_ptr;
+typedef std::tr1::shared_ptr<sf::RenderWindow> render_ptr;
 
 
 class NGame
 {
     public:
-        bool Init(sf::RenderWindow* win);
+        bool Init(render_ptr win);
         void Draw();
         void Update();
 
@@ -33,9 +39,9 @@ class NGame
         void Unload();
 
         // called by NState objects
-        void SetState(NState* state);
+        void SetState(state_ptr state);
 
-        sf::RenderWindow* App;
+        render_ptr App;
 
 
     private:
@@ -43,10 +49,10 @@ class NGame
         int _height;
         int _bpp;
 
-        NState* _curState;
+        state_ptr _curState;
 };
 
-
+typedef std::tr1::shared_ptr<NGame> game_ptr;
 
 
 #endif

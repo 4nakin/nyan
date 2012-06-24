@@ -21,7 +21,7 @@ NSprite nyan;
 NImage bg;
 sf::Music bgMusic;
 
-MainState::MainState(NGame* game)
+MainState::MainState(game_ptr game)
 {
     _game = game;
 }

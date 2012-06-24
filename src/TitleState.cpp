@@ -18,7 +18,7 @@
 
 NImage img;
 
-TitleState::TitleState(NGame* game)
+TitleState::TitleState(game_ptr game)
 {
     _game = game;
 }
@@ -48,7 +48,7 @@ void TitleState::HandleControls()
     const sf::Input& Input = _game->App->GetInput();
 
     if (Input.IsKeyDown(sf::Key::Space))
-        _game->SetState(new IntroState(_game));
+        _game->SetState(state_ptr(new IntroState(_game)));
 }
 
 

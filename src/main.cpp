@@ -22,7 +22,7 @@ int main(int argc, char **argv)
     sf::RenderWindow App;
     NGame game;
 
-    if (!game.Init(&App))
+    if (!game.Init(render_ptr(&App)))
         return EXIT_FAILURE;
 
     while (App.IsOpened())
