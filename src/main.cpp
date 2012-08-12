@@ -25,26 +25,27 @@ int main(int argc, char **argv)
     if (!game.Init(render_ptr(&App)))
         return EXIT_FAILURE;
 
-    while (App.IsOpened())
+    while (App.isOpen())
     {
     
         sf::Event event;
-        while(App.GetEvent(event))
+
+        while(App.pollEvent(event))
         {
-            if (event.Type == sf::Event::Closed)
-                App.Close();
-            else if (event.Type == sf::Event::KeyPressed && event.Key.Code == sf::Key::Escape)
+            if (event.type == sf::Event::Closed)
+                App.close();
+            else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
             {
-                App.Close();
+                App.close();
             }
         }
 
 
         game.Update();
-        App.Clear();
+        App.clear();
         game.Draw();
 
-        App.Display();
+        App.display();
     }
 
     game.Unload();

@@ -18,20 +18,22 @@
 void NSprite::Load(std::string file, int frameWidth, int frameHeight, float animSpeed)
 {
 
-    _img.LoadFromFile(file);
+    _img.loadFromFile(file);
 
     _animSpeed = animSpeed;
     _width = frameWidth;
     _height = frameHeight;
     _curFrame = 0;
-    _animTimer.Reset();
+    _animTimer.restart();
+
 
     // set default animation to first frame
     _currentAnim.push_back(sf::IntRect(0, 0, _width, _height)); 
 
     // set a nice ugly pink as the color mask
-    _img.CreateMaskFromColor(sf::Color(255, 0, 255));
-    surf.SetImage(_img);
+    _img.createMaskFromColor(sf::Color(255, 0, 255));
+    _tex.loadFromImage(_img);
+    surf.setTexture(_tex);
 }
 
 
@@ -51,21 +53,23 @@ void NSprite::LoadAnimation(int row, int frames)
 
 void NSprite::SetAnimation(int animNumber)
 {
-    _currentAnim = _anims[animNumber];
+    static int lastAnim = animNumber;
+    //if (lastAnim != animNumber)
+        _currentAnim = _anims[animNumber];
 }
 
 
 void NSprite::Play()
 {
-   if (_animTimer.GetElapsedTime()*10 >= _animSpeed)
+   if (_animTimer.getElapsedTime().asMilliseconds()*10 >= _animSpeed)
    {
 
        _curFrame += 1;
        if (_curFrame >= (int)_currentAnim.size())
            _curFrame = 0;
 
-       _animTimer.Reset();
+       _animTimer.restart();
    } 
 
-   surf.SetSubRect(_currentAnim[_curFrame]);
+   surf.setTextureRect(_currentAnim[_curFrame]);
 }

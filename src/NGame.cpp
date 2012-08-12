@@ -22,13 +22,11 @@ bool NGame::Init(render_ptr win)
 {
     //_curState = NULL;
     App = win;
-
-    App->Create(sf::VideoMode(1024, 768, 32), "Game", sf::Style::Fullscreen);
-
-    App->UseVerticalSync(true);
-    App->EnableKeyRepeat(true);
-    App->SetFramerateLimit(60);
-    App->ShowMouseCursor(false);
+    App->create(sf::VideoMode(1024, 768, 32), "Game", sf::Style::Fullscreen);
+    App->setVerticalSyncEnabled(true);
+    App->setKeyRepeatEnabled(false);
+    App->setFramerateLimit(60);
+    App->setMouseCursorVisible(false);
 
 
     SetState(state_ptr(new TitleState(game_ptr(this))));

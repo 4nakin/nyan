@@ -27,6 +27,7 @@ class NImage
 
        sf::Sprite surf;
        sf::Image img;
+       sf::Texture tex;
         
 };
 

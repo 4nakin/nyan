@@ -13,60 +13,86 @@
  */
 
 #include "MainState.hpp"
-#include "NSprite.hpp"
+#include "NyanCat.hpp"
 #include "NImage.hpp"
 #include <SFML/Audio.hpp>
+#include <sstream>
 
-NSprite nyan;
+NyanCat nyan;
 NImage bg;
 sf::Music bgMusic;
+
+sf::Font MyFont;
+sf::Text debugString;
 
 MainState::MainState(game_ptr game)
 {
     _game = game;
+
 }
 
 
 void MainState::Load()
 {
-    nyan.Load("resources/gfx/nyan2.png", 100, 100, 1.f);
-    nyan.LoadAnimation(0, 6);
-    nyan.SetAnimation(0);
+    nyan.Load();
 
     bg.Load("resources/gfx/level.jpg");
 
-    bgMusic.OpenFromFile("resources/sounds/main.ogg");
-    bgMusic.Play();
+    bgMusic.openFromFile("resources/sounds/main.ogg");
+    bgMusic.play();
+
+    MyFont.loadFromFile("resources/fonts/8bit.ttf");
+    debugString.setFont(MyFont);
+    debugString.setCharacterSize(32);
+    debugString.setString("");
+    debugString.setPosition(700, 0);
+    debugString.setColor(sf::Color(0, 0, 0));
+
 }
 
 
 void MainState::Draw()
 {
-    _game->App->Draw(bg.surf);
+    _game->App->draw(bg.surf);
     nyan.Play();
-    _game->App->Draw(nyan.surf);
+    _game->App->draw(nyan.surf);
+
+    _game->App->draw(debugString);
 }
 
 
 void MainState::Update()
 {
 
+    //_game->world.Step(1.0f/ 60.0f, 6, 2);
     HandleControls();
 }
 
 
 void MainState::HandleControls()
 {
-    const sf::Input& Input = _game->App->GetInput();
-    
-    if (Input.IsKeyDown(sf::Key::Right))
-        nyan.surf.Move(3.f, 0.f);
-    if (Input.IsKeyDown(sf::Key::Left))
-        nyan.surf.Move(-3.f, 0.f);
-    if (Input.IsKeyDown(sf::Key::Down))
-        nyan.surf.Move(0.f, 3.f);
-    if (Input.IsKeyDown(sf::Key::Up))
-        nyan.surf.Move(0.f, -3.f);
+    //const sf::Input& Input = _game->App->GetInput();
+
+    if (NoKeysDown())
+    {
+        nyan.Still();
+    }
+    else
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+            nyan.Move(RIGHT);
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+            nyan.Move(LEFT);
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+            nyan.Move(DOWN);
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+            nyan.Move(UP);
+
+        debugString.setString("Keys!");
+    }
 
 }
 
@@ -74,4 +100,22 @@ void MainState::HandleControls()
 void MainState::Unload()
 {
 
+}
+
+
+bool MainState::NoKeysDown()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        return false;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        return false;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        return false;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        return false;
+
+    return true;
 }

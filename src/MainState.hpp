@@ -35,6 +35,7 @@ class MainState: public NState
 
     private:
         game_ptr _game;
+        bool NoKeysDown();
 
 };
 

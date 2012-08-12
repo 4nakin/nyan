@@ -32,7 +32,7 @@ void TitleState::Load()
 
 void TitleState::Draw()
 {
-    _game->App->Draw(img.surf);
+    _game->App->draw(img.surf);
 }
 
 
@@ -45,9 +45,10 @@ void TitleState::Update()
 
 void TitleState::HandleControls()
 {
-    const sf::Input& Input = _game->App->GetInput();
+    
+    //const sf::Input& Input = _game->App->GetInput();
 
-    if (Input.IsKeyDown(sf::Key::Space))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
         _game->SetState(state_ptr(new IntroState(_game)));
 }
 

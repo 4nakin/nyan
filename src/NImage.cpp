@@ -18,10 +18,9 @@
 
 void NImage::Load(std::string name)
 {
-
-    img.LoadFromFile(name);
-
-    surf.SetImage(img);
+    img.loadFromFile(name);
+    tex.loadFromImage(img);
+    surf.setTexture(tex);
 
 }
 

@@ -1,7 +1,7 @@
 CC = g++
-LDFLAGS = -lBox2D -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+LDFLAGS = -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
-nyan: main.o NGame.o NImage.o NSprite.o TitleState.o IntroState.o MainState.o
+nyan: main.o NGame.o NImage.o NSprite.o TitleState.o IntroState.o MainState.o NyanCat.o
 	$(CC) -g -o $@ $^ $(LDFLAGS)
 
 main.o: src/main.cpp
@@ -23,6 +23,9 @@ IntroState.o: src/IntroState.cpp
 	$(CC) -g -c $<
 
 MainState.o: src/MainState.cpp
+	$(CC) -g -c $<
+
+NyanCat.o: src/NyanCat.cpp
 	$(CC) -g -c $<
 
 clean:

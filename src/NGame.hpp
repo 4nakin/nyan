@@ -19,7 +19,6 @@
 #include <map>
 #include <string>
 #include <tr1/memory>
-#include <memory>
 #include <SFML/Graphics.hpp>
 #include "NState.hpp"
 
@@ -42,6 +41,7 @@ class NGame
         void SetState(state_ptr state);
 
         render_ptr App;
+
 
 
     private:

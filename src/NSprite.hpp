@@ -31,7 +31,6 @@ class NSprite
         void LoadAnimation(int row, int frames);
         void SetAnimation(int animNumber);
         
-        void Move(SpriteDirection dir);
         void Stop();
 
         void Play();
@@ -48,6 +47,7 @@ class NSprite
         int _curFrame;
         sf::Clock _animTimer;
         sf::Image _img;
+        sf::Texture _tex;
 
 };
 
