@@ -61,7 +61,7 @@ void NSprite::SetAnimation(int animNumber)
 
 void NSprite::Play()
 {
-   if (_animTimer.getElapsedTime().asMilliseconds()*10 >= _animSpeed)
+   if (_animTimer.getElapsedTime().asSeconds()*10 >= _animSpeed)
    {
 
        _curFrame += 1;

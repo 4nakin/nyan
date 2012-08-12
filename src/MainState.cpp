@@ -91,7 +91,7 @@ void MainState::HandleControls()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             nyan.Move(UP);
 
-        debugString.setString("Keys!");
+        //debugString.setString("Keys!");
     }
 
 }
