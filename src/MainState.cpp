@@ -15,10 +15,12 @@
 #include "MainState.hpp"
 #include "NyanCat.hpp"
 #include "NImage.hpp"
+#include "Zombie.hpp"
 #include <SFML/Audio.hpp>
 #include <sstream>
 
 NyanCat nyan;
+Zombie zombie;
 NImage bg;
 sf::Music bgMusic;
 
@@ -35,10 +37,13 @@ MainState::MainState(game_ptr game)
 void MainState::Load()
 {
     nyan.Load();
+    zombie.Load();
+    zombie.SetAnimation(Z_FORWARD);
 
-    bg.Load("resources/gfx/level.jpg");
+    bg.Load("resources/gfx/bg.png");
 
-    bgMusic.openFromFile("resources/sounds/main.ogg");
+    bgMusic.openFromFile("resources/sounds/chase.ogg");
+    bgMusic.setLoop(true);
     bgMusic.play();
 
     MyFont.loadFromFile("resources/fonts/8bit.ttf");
@@ -55,7 +60,9 @@ void MainState::Draw()
 {
     _game->App->draw(bg.surf);
     nyan.Play();
+    zombie.Play();
     _game->App->draw(nyan.surf);
+    _game->App->draw(zombie.surf);
 
     _game->App->draw(debugString);
 }

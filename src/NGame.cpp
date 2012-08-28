@@ -22,7 +22,7 @@ bool NGame::Init(render_ptr win)
 {
     //_curState = NULL;
     App = win;
-    App->create(sf::VideoMode(1024, 768, 32), "Game", sf::Style::Fullscreen);
+    App->create(sf::VideoMode(1024, 768, 32), "Game", sf::Style::Default);
     App->setVerticalSyncEnabled(true);
     App->setKeyRepeatEnabled(false);
     App->setFramerateLimit(60);
@@ -37,8 +37,8 @@ bool NGame::Init(render_ptr win)
 
 void NGame::Update()
 {
-
-    _curState->Update();
+    if(_curState)
+        _curState->Update();
 }
 
 
@@ -53,8 +53,8 @@ void NGame::Draw()
 void NGame::SetState(state_ptr state)
 {
 
-    if (_curState)
-        _curState->Unload();
+    //if (_curState)
+      //  _curState->Unload();
 
     _curState = state;
     _curState->Load();
