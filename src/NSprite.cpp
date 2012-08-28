@@ -33,7 +33,7 @@ void NSprite::Load(std::string file, int frameWidth, int frameHeight, float anim
     // set a nice ugly pink as the color mask
     _img.createMaskFromColor(sf::Color(255, 0, 255));
     _tex.loadFromImage(_img);
-    surf.setTexture(_tex);
+    surf.setTexture(_tex, true);
 }
 
 
@@ -43,7 +43,8 @@ void NSprite::LoadAnimation(int row, int frames)
 
     for (int i = 0; i < frames; i++)
     {
-        sf::IntRect tmp(i * _width, row * _height, (i + 1) * _width, (row + 1) * _height);
+        //sf::IntRect tmp(i * _width, row * _height, (i + 1) * _width, (row + 1) * _height);
+        sf::IntRect tmp(i * _width, row * _height, _width, _height);
         anim.push_back(tmp);
     }
 
