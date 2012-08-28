@@ -1,5 +1,5 @@
-CC = g++
-LDFLAGS = -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
+CC = clang++
+LDFLAGS = -emit-llvm -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 
 nyan: main.o NGame.o NImage.o NSprite.o TitleState.o IntroState.o MainState.o NyanCat.o Zombie.o
 	$(CC) -g -o $@ $^ $(LDFLAGS)

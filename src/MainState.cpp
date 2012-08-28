@@ -24,9 +24,6 @@ Zombie zombie;
 NImage bg;
 sf::Music bgMusic;
 
-sf::Font MyFont;
-sf::Text debugString;
-
 MainState::MainState(game_ptr game)
 {
     _game = game;
@@ -45,14 +42,6 @@ void MainState::Load()
     bgMusic.openFromFile("resources/sounds/chase.ogg");
     bgMusic.setLoop(true);
     bgMusic.play();
-
-    MyFont.loadFromFile("resources/fonts/8bit.ttf");
-    debugString.setFont(MyFont);
-    debugString.setCharacterSize(32);
-    debugString.setString("");
-    debugString.setPosition(700, 0);
-    debugString.setColor(sf::Color(0, 0, 0));
-
 }
 
 
@@ -63,8 +52,6 @@ void MainState::Draw()
     zombie.Play();
     _game->App->draw(nyan.surf);
     _game->App->draw(zombie.surf);
-
-    _game->App->draw(debugString);
 }
 
 
