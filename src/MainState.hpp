@@ -24,6 +24,7 @@ class MainState: public NState
 {
     public:
         MainState(game_ptr game);
+        ~MainState();
         void Load();
         void Draw();
         void Update();

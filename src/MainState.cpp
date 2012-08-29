@@ -31,6 +31,12 @@ MainState::MainState(game_ptr game)
 }
 
 
+MainState::~MainState()
+{
+
+}
+
+
 void MainState::Load()
 {
     nyan.Load();
